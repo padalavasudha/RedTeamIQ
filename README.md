@@ -4,6 +4,7 @@
 
 [![RedTeamIQ Demo](docs/images/home.png)](https://www.youtube.com/watch?v=4Q1c8dyIQNs)
 
+*Click to watch the full walkthrough*
 ---
 
 ## The one-paragraph pitch
