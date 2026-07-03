@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-base: #0a0e14;
+  --color-panel: #111722;
+  --color-panel-2: #161e2d;
+  --color-edge: #1f2937;
+  --color-neon: #ef4444;
+  --color-acid: #22d3ee;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(239, 68, 68, 0.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, rgba(34, 211, 238, 0.08), transparent 55%),
+    #0a0e14;
+  color: #e5e7eb;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Faint grid overlay for the "ops console" feel */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  z-index: 0;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.45); }
+  70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+.pulse-ring { animation: pulse-ring 1.6s infinite; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.blink { animation: blink 1s steps(2, start) infinite; }
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.slide-in { animation: slide-in 0.25s ease-out both; }
+
+/* Attack beam — a thin line that shoots left→right with a flash on impact */
+@keyframes beam-shoot {
+  0% { width: 0; opacity: 0; transform: translateX(-120px); }
+  25% { opacity: 1; }
+  60% { width: 240px; opacity: 1; transform: translateX(0); }
+  100% { width: 240px; opacity: 0; transform: translateX(120px); }
+}
+.attack-beam {
+  height: 2px;
+  width: 240px;
+  background: linear-gradient(90deg, rgba(239,68,68,0), #ef4444 40%, #22d3ee 100%);
+  box-shadow: 0 0 12px #ef4444, 0 0 24px rgba(34,211,238,0.6);
+  border-radius: 2px;
+  animation: beam-shoot 1.5s ease-in both;
+}
+
+/* Score drop pulse */
+@keyframes score-pulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  30% { transform: scale(1.18); filter: brightness(1.6); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+.score-pulse { animation: score-pulse 0.6s ease-out; display: inline-block; }
+
+/* Faint moving scanline overlay for the ops-console feel */
+@keyframes scan {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+.scanlines { position: relative; }
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.018) 0px,
+    rgba(255, 255, 255, 0.018) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: 1;
+}
+
+/* Breach full-screen red flash */
+@keyframes breach-flash {
+  0% { background: rgba(239, 68, 68, 0); }
+  15% { background: rgba(239, 68, 68, 0.35); }
+  100% { background: rgba(10, 14, 20, 0.86); }
+}
+.breach-flash { animation: breach-flash 0.5s ease-out forwards; backdrop-filter: blur(2px); }
+
+/* ── Print → Save as PDF: print the rendered report exactly, hide app chrome ── */
+@media print {
+  @page { margin: 12mm; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body, #root { height: auto !important; background: #0a0e14 !important; }
+  body::before { display: none !important; }            /* grid overlay */
+  .scanlines::after { display: none !important; }       /* scanline overlay */
+  header, footer, .no-print { display: none !important; }
+  .report-print { max-width: none !important; padding: 0 !important; }
+  /* evidence boxes are scrollable on screen — print them in full, never clipped */
+  pre { max-height: none !important; overflow: visible !important; white-space: pre-wrap !important; }
+  /* keep the radar from splitting; let tall cards flow across pages so we don't
+     leave big blank gaps (only the radar must stay intact) */
+  svg { break-inside: avoid; page-break-inside: avoid; }
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0a0e14; }
+::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #374151; }
