@@ -161,4 +161,6 @@ KB/         5 knowledge-base documents grounding the agents
 
 ---
 
-*RedTeamIQ by Vasudha Padala and Anagha Shyama Prakash· Microsoft Agents League 2026 · Reasoning Agents track*
+```bash
+RedTeamIQ by Vasudha Padala and Anagha Shyama Prakash
+```
