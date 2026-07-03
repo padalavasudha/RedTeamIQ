@@ -1,8 +1,8 @@
-# RedTeamIQ 🛡️⚔️
+# RedTeamIQ 🛡️
 
 **An AI agent that red-teams other AI agents — autonomously, with real attacks, and a CVSS-grade security report.**
 
-> 📹 **[▶ Watch the 4-minute demo](https://www.youtube.com/watch?v=4Q1c8dyIQNs)**
+> **[▶ Watch the 4-minute demo](https://www.youtube.com/watch?v=4Q1c8dyIQNs)**
 
 ---
 
@@ -136,7 +136,7 @@ FOUNDRY_IQ=auto .venv/bin/python main.py        # :5001
 ```
 
 ### Run a scan
-Open **http://localhost:5173**, click **⚡ Vulnerable demo (AcmeBot)** (or **🛡 Hardened demo (Nexus)**) — this fills the prompt + tools, points at the real local endpoint, and switches to Live. Pick a campaign → **Start Campaign** → watch the battle → read the graded report.
+Open **http://localhost:5173**, click ** Vulnerable demo (AcmeBot)** (or **Hardened demo (Nexus)**) — this fills the prompt + tools, points at the real local endpoint, and switches to Live. Pick a campaign → **Start Campaign** → watch the battle → read the graded report.
 
 > To test **your own** agent: paste its system prompt, select its tools, choose **Live API**, and enter its endpoint URL (any HTTP endpoint accepting `{ "message", "history" }` and returning JSON).
 
