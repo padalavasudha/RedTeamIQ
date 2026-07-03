@@ -24,7 +24,7 @@ RedTeamIQ closes that gap. You give it your agent's system prompt, its tools, an
 RedTeamIQ is a pipeline of five specialized reasoning agents on **Azure AI Foundry**. Each has one job and hands structured output to the next.
 
 ```
-                          ┌──────────────────── Foundry IQ knowledge base ────────────────────┐
+                          ┌──────────────────── Foundry IQ knowledge base ─────────────────────┐
                           │   (Azure AI Search agentic retrieval, attached over MCP)           │
                           │   attack patterns · OWASP refs · severity rubric · fixes           │
                           └───────────▲───────────────────────────▲────────────────────────────┘
