@@ -2,7 +2,7 @@
 
 **An AI agent that red-teams other AI agents — autonomously, with real attacks, and a CVSS-grade security report.**
 
-[![RedTeamIQ Demo](docs/images/home.png)(https://www.youtube.com/watch?v=4Q1c8dyIQNs)]
+[![RedTeamIQ Demo](docs/images/home.png)](https://www.youtube.com/watch?v=4Q1c8dyIQNs)
 
 ---
 
